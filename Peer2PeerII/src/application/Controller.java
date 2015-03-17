@@ -69,6 +69,12 @@ public class Controller {
 		messageTextArea.setText("");
 	}
 	
+	@FXML
+	private void sendNewMessage(){
+		send(messageTextArea.getText(), "sam", 8888);
+		messageTextArea.setText("");
+	}
+	
 	private void send(String msg, String host, int port) {
 		if (talker != null && talker.isGoing()) {
 			talker.halt();
@@ -78,13 +84,13 @@ public class Controller {
 		talker.start();		
 	}
 	
-	private JTextArea makeTextArea(String title, JPanel where) {
+	/*private JTextArea makeTextArea(String title, JPanel where) {
 		JTextArea t = new JTextArea();
 		JScrollPane scroller = new JScrollPane(t);
 		scroller.setBorder(BorderFactory.createTitledBorder(title));
 		where.add(scroller);
 		return t;
-	}
+	}*/
 	
 	
 	private class Receiver extends Thread {
