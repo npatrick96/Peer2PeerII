@@ -3,11 +3,15 @@ package sockdemocmd;
 import java.net.*;
 import java.io.*;
 
+import application.Controller;
+
 public class SocketEchoThread extends Thread {
     private Socket socket;
+    private Controller controller;
     
-    public SocketEchoThread(Socket socket) {
+    public SocketEchoThread(Socket socket, Controller c) {
         this.socket = socket;
+        this.controller = c;
     }
 
     public void run() {
@@ -26,6 +30,7 @@ public class SocketEchoThread extends Thread {
             }
             System.out.println("From: " + socket.getInetAddress() + ": " + sb);
         
+            controller.getModel().addMessage(sb.toString());
             writer.print(sb);
             writer.flush();
             socket.close();
