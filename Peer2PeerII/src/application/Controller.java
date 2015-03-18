@@ -1,6 +1,9 @@
 package application;
 
 
+import java.io.IOException;
+
+import sockdemocmd.ServerThread;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,6 +18,7 @@ import javafx.scene.layout.VBox;
 public class Controller {
 	
 	private MessageModel model = new MessageModel();
+	private ServerThread server;
 	
 	@FXML
 	TextArea messageTextArea;
@@ -44,11 +48,13 @@ public class Controller {
 	Button attachFilesButton;
 	
 	@FXML
-	void initialize(){
+	void initialize() throws IOException{
+		System.out.println("Controller is initializing");
+		server = new ServerThread(8888, this);
+		server.start();
 		messageArea.setItems(model.getObservable());
 		messageArea.setCellFactory((callback) -> new MessageListCell());
 		messageTextArea.wrapTextProperty().set(true);
-		
 	}
 	
 	@FXML
@@ -59,8 +65,12 @@ public class Controller {
 	
 	@FXML
 	private void sendNewMessage(){
-		model.send(messageTextArea.getText(), "sam", 8888);
+		model.send(messageTextArea.getText(), "Merry", 8888);
 		messageTextArea.setText("");
+	}
+	
+	public MessageModel getModel(){
+		return model;
 	}
 	
 	
