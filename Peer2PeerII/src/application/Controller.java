@@ -3,10 +3,10 @@ package application;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -35,7 +35,10 @@ public class Controller {
 	HBox messageAndButtonsHBox;
 	
 	@FXML
-	Label statusLabel;
+	TextField hostNameTextField;
+	
+	@FXML
+	TextField portTextField;
 	
 	@FXML
 	Button sendButton;
@@ -59,7 +62,8 @@ public class Controller {
 	
 	@FXML
 	private void sendNewMessage(){
-		model.send(messageTextArea.getText(), "sam", 8888);
+		model.send(messageTextArea.getText(), hostNameTextField.getText(), 
+				Integer.parseInt(portTextField.getText()));
 		messageTextArea.setText("");
 	}
 	
