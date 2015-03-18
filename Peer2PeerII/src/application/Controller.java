@@ -62,8 +62,11 @@ public class Controller {
 	
 	@FXML
 	private void sendNewMessage(){
-		model.send(messageTextArea.getText(), hostNameTextField.getText(), Integer.parseInt(portTextField.getText()));
-		messageTextArea.setText("");
+		if (!messageTextArea.getText().isEmpty()){
+			model.send(messageTextArea.getText(), hostNameTextField.getText(),
+					Integer.parseInt(portTextField.getText()));
+			messageTextArea.setText("");
+		}
 	}
 	
 	public MessageModel getModel(){

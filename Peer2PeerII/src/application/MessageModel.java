@@ -13,9 +13,15 @@ public class MessageModel {
 	private ArrayBlockingQueue<String> channel = new ArrayBlockingQueue<String>(2, true);
 	
 	public void addMessage(String text){
-		Message message = new Message(text);
-		messages.add(message);
-		System.out.println("here in addMessage function");
+		if (!text.isEmpty()){
+			Message message = new Message(text);
+			messages.add(message);
+		}
+		
+	}
+	
+	public double size(){
+		return messages.size();
 	}
 	
 	public void send(String msg, String host, int port) {
@@ -43,4 +49,7 @@ public class MessageModel {
 			}
 		}
 	}
+
+
+
 }
