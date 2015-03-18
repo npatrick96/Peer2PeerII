@@ -13,12 +13,17 @@ public class MessageModel {
 	private ArrayBlockingQueue<String> channel = new ArrayBlockingQueue<String>(2, true);
 	
 	public void addMessage(String text){
-		if (!text.isEmpty()){
-			Message message = new Message(text);
-			messages.add(message);
+		try {
+			if (!text.isEmpty()){
+				Message message = new Message(text);
+				messages.add(message);
+				}
+			}
+			 catch (IllegalStateException ise) {
+				System.out.println("Exception thrown  :" + ise);
+			}
 		}
-		
-	}
+	
 	
 	public double size(){
 		return messages.size();
@@ -40,11 +45,10 @@ public class MessageModel {
 				try {
 					line = channel.take();
 					addMessage(line);
-					break;
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				} 
 			}
 		}
 	}

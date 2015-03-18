@@ -30,9 +30,13 @@ public class SocketEchoThread extends Thread {
             }
             System.out.println("From: " + socket.getInetAddress() + ": " + sb);
             
+            try{
             controller.getModel().addMessage(sb.toString());
-            writer.print(sb);
-            writer.flush();
+            } catch (IllegalStateException ise) {
+            	
+            }
+            //writer.print(sb);
+            //writer.flush();
             socket.close();
         } catch (IOException ioe) {
             ioe.printStackTrace();

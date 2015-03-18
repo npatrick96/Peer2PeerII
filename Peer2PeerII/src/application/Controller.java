@@ -65,8 +65,8 @@ public class Controller {
 		System.out.println("Controller is initializing");
 		chatServer = new ServerThread(8888, this);
 		chatServer.start();
-		fileReceiver = new FileReceiverWrapper(8888, this);
-		fileReceiver.start();
+		//fileReceiver = new FileReceiverWrapper(8888, this);
+		//fileReceiver.start();
 		messageArea.setItems(model.getObservable());
 		messageArea.setCellFactory((callback) -> new MessageListCell());
 		messageTextArea.wrapTextProperty().set(true);
