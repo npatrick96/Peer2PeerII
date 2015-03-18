@@ -14,7 +14,7 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("Gui.fxml"));
 			BorderPane root = (BorderPane) loader.load();
-			Scene scene = new Scene(root,400,480);
+			Scene scene = new Scene(root,400,485);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("P2P chat App");
