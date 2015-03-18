@@ -3,7 +3,10 @@ package application;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
+import fileTransfer.FileReceiverWrapper;
 import fileTransfer.FileTransferSenderThread;
 import sockdemocmd.ServerThread;
 import javafx.fxml.FXML;
@@ -22,7 +25,8 @@ import javafx.stage.FileChooser;
 public class Controller {
 	
 	private MessageModel model = new MessageModel();
-	private ServerThread server;
+	private ServerThread chatServer;
+	private FileReceiverWrapper fileReceiver;
 	
 	@FXML
 	TextArea messageTextArea;
@@ -59,8 +63,10 @@ public class Controller {
 	@FXML
 	void initialize() throws IOException{
 		System.out.println("Controller is initializing");
-		server = new ServerThread(8888, this);
-		server.start();
+		chatServer = new ServerThread(8888, this);
+		chatServer.start();
+		fileReceiver = new FileReceiverWrapper(8888, this);
+		fileReceiver.start();
 		messageArea.setItems(model.getObservable());
 		messageArea.setCellFactory((callback) -> new MessageListCell());
 		messageTextArea.wrapTextProperty().set(true);
@@ -76,13 +82,21 @@ public class Controller {
 	}
 	
 	@FXML
-	private void sendFile(){
+	private void sendFile() {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open Resource File");
 		
 		File fileToSend = fileChooser.showOpenDialog(attachFilesButton.getScene().getWindow());
 		if (fileToSend != null){
-			new FileTransferSenderThread(server.getSocket(), fileToSend).run();
+			Socket sock;
+			try {
+				sock = new Socket(hostNameTextField.getText(),
+						Integer.parseInt(portTextField.getText()));
+				new FileTransferSenderThread(sock, fileToSend).run();
+			} catch (NumberFormatException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	

@@ -11,6 +11,11 @@ public class FileTransferReceiverThread extends Thread {
 	private Socket socket;
 	private File toWrite;
 	
+	public FileTransferReceiverThread(Socket s, File file){
+		this.socket = s;
+		this.toWrite = file;
+	}
+	
 	public void run(){
 		byte[] bytes = new byte[1024];
 	    InputStream is;
