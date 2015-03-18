@@ -15,6 +15,7 @@ public class MessageModel {
 	public void addMessage(String text){
 		Message message = new Message(text);
 		messages.add(message);
+		System.out.println("here in addMessage function");
 	}
 	
 	public void send(String msg, String host, int port) {
@@ -34,6 +35,7 @@ public class MessageModel {
 				try {
 					line = channel.take();
 					addMessage(line);
+					break;
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

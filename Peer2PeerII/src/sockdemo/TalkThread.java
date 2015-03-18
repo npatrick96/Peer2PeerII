@@ -33,7 +33,7 @@ public class TalkThread extends Thread {
 			PrintWriter writer = new PrintWriter(s.getOutputStream());
 			writer.print(msg);
 			writer.flush();
-			channel.put("message sent; awaiting response...");
+			channel.put(msg);
 
 			BufferedReader responses = new BufferedReader(new InputStreamReader(s.getInputStream()));
 			while (going) {
@@ -41,7 +41,7 @@ public class TalkThread extends Thread {
 				String line = responses.readLine();
 				if (line != null) {channel.put(line);}
 			}
-			channel.put("Finished");
+			//channel.put("Finished");
 			going = false;
 		} catch (IOException ioe) {
 			ioe.printStackTrace();

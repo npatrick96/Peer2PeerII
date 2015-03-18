@@ -33,7 +33,7 @@ public class ServerThread extends Thread {
 	}
 
 	public static void main(String[] args) throws IOException {
-		//Server s = new Server(Integer.parseInt(args[0]));
-		//s.listen();
+		ServerThread s = new ServerThread(Integer.parseInt(args[0]), null);
+		s.run();
 	}
 }

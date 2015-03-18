@@ -20,8 +20,8 @@ public class SocketEchoThread extends Thread {
                 new BufferedReader
                 (new InputStreamReader(socket.getInputStream()));
             PrintWriter writer = new PrintWriter(socket.getOutputStream());
-            writer.println("Connection open.");
-            writer.println("I will echo a single message, then close.");
+            //writer.println("Connection open.");
+            //writer.println("I will echo a single message, then close.");
 
             StringBuilder sb = new StringBuilder();
             while (!responses.ready()){}
