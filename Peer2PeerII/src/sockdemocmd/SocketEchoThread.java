@@ -29,7 +29,7 @@ public class SocketEchoThread extends Thread {
                 sb.append(responses.readLine() + '\n');
             }
             System.out.println("From: " + socket.getInetAddress() + ": " + sb);
-        
+            
             controller.getModel().addMessage(sb.toString());
             writer.print(sb);
             writer.flush();

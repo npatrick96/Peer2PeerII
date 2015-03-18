@@ -8,6 +8,7 @@ import application.Controller;
 public class ServerThread extends Thread {
 	private ServerSocket accepter;
 	private Controller controller;
+	private Socket s;
 
 	public ServerThread(int port, Controller c) throws IOException {
 		this.controller = c;
@@ -17,7 +18,7 @@ public class ServerThread extends Thread {
 
 	public void listen() throws IOException {
 		for (;;) {
-			Socket s = accepter.accept();
+			s = accepter.accept();
 			SocketEchoThread echoer = new SocketEchoThread(s, controller);
 			System.out.println("Connection accepted from " + s.getInetAddress());
 			echoer.start();

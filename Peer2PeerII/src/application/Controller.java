@@ -66,6 +66,11 @@ public class Controller {
 		messageTextArea.setText("");
 	}
 	
+	@FXML
+	private void sendFile(){
+		
+	}
+	
 	public MessageModel getModel(){
 		return model;
 	}
