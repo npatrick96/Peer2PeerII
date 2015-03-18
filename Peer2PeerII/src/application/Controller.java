@@ -69,6 +69,11 @@ public class Controller {
 		}
 	}
 	
+	@FXML
+	private void sendFile(){
+		
+	}
+	
 	public MessageModel getModel(){
 		return model;
 	}

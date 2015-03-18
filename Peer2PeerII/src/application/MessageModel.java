@@ -31,8 +31,7 @@ public class MessageModel {
 		talker = new TalkThread(msg, host, port, channel);
 		new Receiver().start();
 		talker.start();		
-	}
-		
+	}	
 	
 	public class Receiver extends Thread {
 		public void run() {
