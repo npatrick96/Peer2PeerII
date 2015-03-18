@@ -1,8 +1,10 @@
 package application;
 
 
+import java.io.File;
 import java.io.IOException;
 
+import fileTransfer.FileTransferSenderThread;
 import sockdemocmd.ServerThread;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,6 +14,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+
 
 
 
@@ -50,6 +54,8 @@ public class Controller {
 	@FXML
 	Button attachFilesButton;
 	
+
+	
 	@FXML
 	void initialize() throws IOException{
 		System.out.println("Controller is initializing");
@@ -71,7 +77,13 @@ public class Controller {
 	
 	@FXML
 	private void sendFile(){
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Open Resource File");
 		
+		File fileToSend = fileChooser.showOpenDialog(attachFilesButton.getScene().getWindow());
+		if (fileToSend != null){
+			new FileTransferSenderThread(server.getSocket(), fileToSend).run();
+		}
 	}
 	
 	public MessageModel getModel(){

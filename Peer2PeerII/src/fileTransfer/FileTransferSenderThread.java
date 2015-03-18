@@ -12,8 +12,9 @@ public class FileTransferSenderThread extends Thread {
 	private Socket socket;
 	private File toSend;
 
-	FileTransferSenderThread(Socket s){
+	public FileTransferSenderThread(Socket s, File file){
 		this.socket = s;
+		this.toSend = file;
 	}
 	
 	public void run(){
@@ -36,4 +37,5 @@ public class FileTransferSenderThread extends Thread {
 		}
 		
 	}
+
 }

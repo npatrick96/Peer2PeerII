@@ -32,6 +32,11 @@ public class ServerThread extends Thread {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public Socket getSocket(){
+		return this.s;
+	}
 
 	public static void main(String[] args) throws IOException {
 		ServerThread s = new ServerThread(Integer.parseInt(args[0]), null);

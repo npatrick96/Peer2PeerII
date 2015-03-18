@@ -45,7 +45,7 @@
                   <VBox fx:id="buttonsVBox">
                      <children>
                         <Button fx:id="sendButton" alignment="CENTER" mnemonicParsing="false" onAction="#sendNewMessage" prefHeight="25.0" prefWidth="128.0" text="Send Message" />
-                        <Button fx:id="attachFilesButton" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Attach Files" />
+                        <Button fx:id="attachFilesButton" alignment="CENTER" mnemonicParsing="false" onAction="#sendFile" prefHeight="25.0" prefWidth="127.0" text="Attach Files" />
                      </children>
                   </VBox>
                </children>
